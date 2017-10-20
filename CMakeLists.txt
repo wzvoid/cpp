@@ -3,5 +3,5 @@ project(cpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES Index.cpp)
+set(SOURCE_FILES index.cpp)
 add_executable(Algorithm ${SOURCE_FILES})
