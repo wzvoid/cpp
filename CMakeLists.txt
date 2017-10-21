@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.6)
 project(cpp)
 
+FIND_PACKAGE(OpenCV REQUIRED)
+
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES index.cpp)
-add_executable(Algorithm ${SOURCE_FILES})
+add_executable(cpp ${SOURCE_FILES})
+
+target_link_libraries(cpp ${OpenCV_LIBS})
