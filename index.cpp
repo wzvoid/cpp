@@ -8,12 +8,10 @@
 using namespace std;
 using namespace cv;
 
-template<class T>
-T func(T x, T y) {
-    return x * x + y * y;
-}
-
 int main() {
-    cout << func(1.02, 2.07);
+    Mat img = imread("/home/wz/CLionProjects/cpp/xm.jpg");
+    namedWindow("test");
+    imshow("test", img);
+    waitKey(0);
     return 0;
 }
