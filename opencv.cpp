@@ -20,7 +20,8 @@ int main() {
     Mat RowClone = m4.row(1).clone();
 
 
-    //格式化输出
+//    Mat r = imread("/home/wz/CLionProjects/cpp/200-200.jpg", 1);
+//    格式化输出
     Mat r = Mat(5,3,CV_8UC3);
     randu(r, 0, 255);
     cout << "默认风格:" << r << ";" << endl << endl;
@@ -35,7 +36,7 @@ int main() {
 //    BGR顺序
 //    Mat img(500,500,CV_8UC3,CvScalar(0,0,255));
 
-//    Mat img = imread("/home/wz/CLionProjects/cpp/200-200.jpg", 1);
+
 //    namedWindow("test");
 //    imshow("test", img);
 //    waitKey(0);
