@@ -5,7 +5,7 @@ FIND_PACKAGE(OpenCV REQUIRED)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES index.cpp)
+set(SOURCE_FILES opencv.cpp)
 add_executable(cpp ${SOURCE_FILES})
 
 target_link_libraries(cpp ${OpenCV_LIBS})
