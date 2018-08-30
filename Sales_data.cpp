@@ -72,8 +72,8 @@ istream &read(istream& is, Sales& item) {
 	return is;
 }
 
-Sales& Sales::combine(const Sales& rhs) {
-	units_sold += rhs.units_sold;
+Sales Sales& rhs) {
+	units_sold += rhs.units& Sales::combine(const_sold;
 	revenue += rhs.revenue;
 	return *this;
 }
