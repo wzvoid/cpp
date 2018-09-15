@@ -5,6 +5,7 @@
 #include<algorithm>
 #include<assert.h>
 #include<stack>
+#include <queue>
 
 using namespace std;
 
@@ -13,14 +14,14 @@ typedef struct TreeNode {
     TreeNode *left;
     TreeNode *right;
 
-    TreeNode(int n) : val(n), left(NULL), right(NULL) {}
+    explicit TreeNode(int n) : val(n), left(nullptr), right(nullptr) {}
 } BiTreeNode, *BiTree;
 
 void createBiTree(TreeNode *&root) {
-    char val;
+    int val;
     cin >> val;
     if (val == 0)
-        root = NULL;
+        root = nullptr;
     else {
         root = new TreeNode(val);
         createBiTree(root->left);
@@ -52,31 +53,28 @@ void post(TreeNode *root) {
     }
 }
 
-class Solution {
-public:
-    void push(int node) {
-        while (stack2.size())
-            stack1.push(stack2.top());
-        stack1.push(node);
+vector<int> PrintFromTopToBottom(TreeNode *root) {
+    vector<int> v;
+    queue<TreeNode *> que;
+    if (root) {
+        que.push(root);
+        while (!que.empty()) {
+            TreeNode *temp = que.front();
+            que.pop();
+            v.push_back(temp->val);
+            cout << temp->val << " ";
+            if (temp->left)
+                que.push(temp->left);
+            if (temp->right)
+                que.push(temp->right);
+        }
     }
-
-    int pop() {
-        while (stack1.size())
-            stack2.push(stack1.top());
-        return stack2.top();
-    }
-
-private:
-    stack<int> stack1;
-    stack<int> stack2;
-};
+    return v;
+}
 
 int main() {
-    /*vector<int> a{ 5,3,1,7,8,0 }, b{ 1,3,7,5,0,8 };
-    in(reConstructBinaryTree(a, b));*/
-    /*TreeNode *r = NULL;
+    TreeNode *r = nullptr;
     createBiTree(r);
-    pre(r);*/
-
+    PrintFromTopToBottom(r);
     return 0;
 }
