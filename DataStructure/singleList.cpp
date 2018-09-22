@@ -94,6 +94,25 @@ ListNode *ReverseList(ListNode *pHead) {
     return pre;
 }
 
+// 5 3 8 1
+ListNode *FindKthToTail(ListNode *pListHead, unsigned int k) {
+    if (!pListHead)
+        return nullptr;
+    int count = 0;
+    ListNode *p = pListHead, *q = pListHead;
+    while (p != nullptr) {
+        if (count < k)
+            ++count;
+        else
+            q = q->next;
+        p = p->next;
+    }
+    if (count < k)
+        return nullptr;
+    else
+        return q;
+}
+
 int main() {
 
     return 0;

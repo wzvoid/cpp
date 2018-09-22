@@ -9,23 +9,36 @@
 
 using namespace std;
 
-typedef struct TreeNode {
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
 
     explicit TreeNode(int n) : val(n), left(nullptr), right(nullptr) {}
-} BiTreeNode, *BiTree;
+};
 
-void createBiTree(TreeNode *&root) {
+//void createBiTree(TreeNode *&root) {
+//    int val;
+//    cin >> val;
+//    if (val == 0)
+//        root = nullptr;
+//    else {
+//        root = new TreeNode(val);
+//        createBiTree(root->left);
+//        createBiTree(root->right);
+//    }
+//}
+
+TreeNode *createBiTree() {
     int val;
     cin >> val;
     if (val == 0)
-        root = nullptr;
+        return nullptr;
     else {
-        root = new TreeNode(val);
-        createBiTree(root->left);
-        createBiTree(root->right);
+        auto *root = new TreeNode(val);
+        root->left = createBiTree();
+        root->right = createBiTree();
+        return root;
     }
 }
 
@@ -72,9 +85,12 @@ vector<int> PrintFromTopToBottom(TreeNode *root) {
     return v;
 }
 
+//bool HasSubtree(TreeNode *pRoot1, TreeNode *pRoot2) {
+//
+//}
+
 int main() {
-    TreeNode *r = nullptr;
-    createBiTree(r);
-    PrintFromTopToBottom(r);
+    TreeNode *r = createBiTree();
+    pre(r);
     return 0;
 }
