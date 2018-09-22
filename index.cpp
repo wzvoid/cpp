@@ -10,7 +10,12 @@
 
 using namespace std;
 
-int main() {
+bool myfunc(int i, int j) { return i > j; }
 
+int main() {
+    vector<int> v = {4, 3, 2, 7, 8, 2, 3, 1};
+    stable_sort(v.begin(), v.end(), myfunc);
+    for (auto c:v)
+        cout << c;
     return 0;
 }
