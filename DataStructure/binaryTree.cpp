@@ -85,9 +85,9 @@ vector<int> PrintFromTopToBottom(TreeNode *root) {
     return v;
 }
 
-//bool HasSubtree(TreeNode *pRoot1, TreeNode *pRoot2) {
-//
-//}
+bool HasSubtree(TreeNode *pRoot1, TreeNode *pRoot2) {
+
+}
 
 int main() {
     TreeNode *r = createBiTree();
