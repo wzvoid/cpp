@@ -187,6 +187,10 @@ public:
 };
 
 int main() {
-
+    Solution s;
+    vector<int> v{5, 3, 8, 1, 7, 0};
+    s.heapSort(v);
+    for (auto c:v)
+        cout << c << " ";
     return 0;
 }
