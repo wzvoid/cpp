@@ -32,7 +32,7 @@ public:
     void selectSort(vector<int> &arr) {
         if (!arr.empty()) {
             int end = arr.size() - 1;
-            for (int i = 0; i < end; ++i) {
+            for (int i = 0; i < end; ++i) { //不用小于等于end
                 int k = i; // 用指针指向最小值，这里假使 k 指向最小值。
                 for (int j = k + 1; j <= end; ++j) // 因为每次都要进循环里面，所以最好最坏平均都是O(n^2)
                     if (arr[j] < arr[k])
@@ -41,6 +41,7 @@ public:
                     int temp = arr[k];
                     arr[k] = arr[i];
                     arr[i] = temp;
+//                    swap(arr[i], arr[k]);
                 }
             }
         }
