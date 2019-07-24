@@ -12,13 +12,13 @@ typedef struct ListNode {
     int val;
     struct ListNode *next;
 
-    ListNode(int x) : val(x), next(NULL) {}
+    explicit ListNode(int x) : val(x), next(nullptr) {}
 } SiListNode, *SiList;
 
 ListNode *createlist() {
     ListNode *h = nullptr, *p = nullptr;
     for (int i = 1; i <= 10; i = i + 2) {
-        ListNode *temp = new ListNode(i);
+        auto *temp = new ListNode(i);
         if (p == nullptr) {
             h = p = temp;
         } else {
@@ -32,7 +32,7 @@ ListNode *createlist() {
 ListNode *createlist2() {
     ListNode *h = nullptr, *p = nullptr;
     for (int i = 0; i <= 10; i = i + 3) {
-        ListNode *temp = new ListNode(i);
+        auto *temp = new ListNode(i);
         if (p == nullptr) {
             h = p = temp;
         } else {
@@ -52,14 +52,13 @@ void print(ListNode *p) {
 
 ListNode *Merge(ListNode *pHead1, ListNode *pHead2) {
     ListNode *p1 = pHead1, *p2 = pHead2;
-    ListNode *merge = NULL, *p3 = NULL;
-    // 如果某个为空，那就返回另外一个
+    ListNode *merge = nullptr, *p3 = nullptr;
     if (!pHead1)
         return pHead2;
     if (!pHead2)
         return pHead1;
     while (p1 && p2) {
-        ListNode *temp = NULL;
+        ListNode *temp = nullptr;
         if (p1->val < p2->val) {
             temp = p1;
             p1 = p1->next;
@@ -67,7 +66,7 @@ ListNode *Merge(ListNode *pHead1, ListNode *pHead2) {
             temp = p2;
             p2 = p2->next;
         }
-        temp->next = NULL;
+        temp->next = nullptr;
         if (!merge) {
             merge = p3 = temp;
         } else {
@@ -75,8 +74,10 @@ ListNode *Merge(ListNode *pHead1, ListNode *pHead2) {
             p3 = p3->next;
         }
     }
-    if (p1) p3->next = p1;
-    if (p2) p3->next = p2;
+    if (p1)
+        p3->next = p1;
+    if (p2)
+        p3->next = p2;
     return merge;
 }
 
@@ -114,6 +115,17 @@ ListNode *FindKthToTail(ListNode *pListHead, unsigned int k) {
 }
 
 int main() {
-
+    // 1 3 5 7 9
+    // 0 3 6 9
+    // 0 1 3 3 5 6 7 9 9
+    ListNode *a1 = createlist();
+    ListNode *a2 = createlist2();
+    ListNode *a3 = Merge(a1, a2);
+//    print(a3);
+//    cout << endl;
+//    print(a2);
+//    cout << endl;
+//    print(a3);
+    cout << FindKthToTail(a3, 6)->val;
     return 0;
 }
