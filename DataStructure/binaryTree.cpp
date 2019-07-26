@@ -1,9 +1,8 @@
 #include<iostream>
 #include<string>
-#include<string.h>
 #include<vector>
 #include<algorithm>
-#include<assert.h>
+#include<cassert>
 #include<stack>
 #include <queue>
 
@@ -69,6 +68,7 @@ void post(TreeNode *root) {
 vector<int> PrintFromTopToBottom(TreeNode *root) {
     vector<int> v;
     queue<TreeNode *> que;
+    bool flag = true;
     if (root) {
         que.push(root);
         while (!que.empty()) {
@@ -83,10 +83,6 @@ vector<int> PrintFromTopToBottom(TreeNode *root) {
         }
     }
     return v;
-}
-
-bool HasSubtree(TreeNode *pRoot1, TreeNode *pRoot2) {
-
 }
 
 int main() {
