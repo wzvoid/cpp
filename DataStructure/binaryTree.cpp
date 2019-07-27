@@ -75,18 +75,32 @@ vector<int> PrintFromTopToBottom(TreeNode *root) {
             TreeNode *temp = que.front();
             que.pop();
             v.push_back(temp->val);
-            cout << temp->val << " ";
-            if (temp->left)
-                que.push(temp->left);
-            if (temp->right)
-                que.push(temp->right);
+//            cout << temp->val << " ";
+            if (!flag) {
+                if (temp->left)
+                    que.push(temp->left);
+                if (temp->right)
+                    que.push(temp->right);
+            } else {
+                if (temp->right)
+                    que.push(temp->right);
+                if (temp->left)
+                    que.push(temp->left);
+            }
+            flag = !flag;
         }
     }
     return v;
 }
 
+//   9
+// 3   7
+//4 5 8 6
+
 int main() {
     TreeNode *r = createBiTree();
-    pre(r);
+    vector<int> a = PrintFromTopToBottom(r);
+    for (auto c:a)
+        cout << c << " ";
     return 0;
 }
