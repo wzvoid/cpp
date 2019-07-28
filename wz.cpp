@@ -14,26 +14,21 @@ typedef pair<int, int> pp;
 
 int main() {
     int n = 5;
-    int **p = (int **)malloc(sizeof(int *) * n);
-    for (int i = 0; i < n; ++i)
-    {
-        int *q = (int *)malloc(sizeof(int) * n);
+    int **p = (int **) malloc(sizeof(int *) * n);
+    for (int i = 0; i < n; ++i) {
+        int *q = (int *) malloc(sizeof(int) * n);
         p[i] = q;
-        for (int j = 0; j < n; ++j)
-        {
+        for (int j = 0; j < n; ++j) {
             *(*(p + i) + j) = i + j + 1;
         }
     }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             printf("%d ", p[i][j]);
         }
         printf("\n");
     }
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         free(p[i]);
     }
     free(p);
