@@ -37,6 +37,5 @@ int main() {
         free(p[i]);
     }
     free(p);
-
     return 0;
 }
