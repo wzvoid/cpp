@@ -13,8 +13,36 @@ using namespace std;
 typedef pair<int, int> pp;
 
 int main() {
-    int a = 1, b = 2;
-    assert(a == b);
-    cout << "success";
+    int n = 5;
+    int **p = (int **)malloc(sizeof(int *) * n);
+    for (int i = 0; i < n; ++i)
+    {
+        int *q = (int *)malloc(sizeof(int) * n);
+        p[i] = q;
+        for (int j = 0; j < n; ++j)
+        {
+            *(*(p + i) + j) = i + j + 1;
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", p[i][j]);
+        }
+        printf("\n");
+    }
+    for (int i = 0; i < n; i++)
+    {
+        free(p[i]);
+    }
+    free(p);
+    for (int k = 0; k < n; k++)
+    {
+        printf("%d\n", p + k);
+    }
+
+    /*int(*a)[] = (int(*)[])malloc(sizeof(int) * 5);*/
+
     return 0;
 }
