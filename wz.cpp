@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
-//#include <vector>
-//#include <deque>
-//#include <algorithm>
-//#include <set>
-//#include <unordered_set>
+#include <vector>
+#include <deque>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
 #include <map>
 #include <cassert>
 #include <unordered_map>
@@ -12,7 +12,7 @@
 using namespace std;
 typedef pair<int, int> pp;
 
-int main() {
+int main(int argc, char *argv[]) {
     int n = 5;
     int **p = (int **) malloc(sizeof(int *) * n);
     for (int i = 0; i < n; ++i) {
