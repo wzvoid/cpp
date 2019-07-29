@@ -1,6 +1,6 @@
 //
 // Created by 王振 on 2019-07-29.
-//
+// 旋转数组的最小数字
 
 #include <iostream>
 #include <string>
