@@ -1,10 +1,12 @@
 //
 // Created by 王振 on 2019-07-28.
 //
+//二维数组中的查找
 #include <iostream>
 #include <vector>
 
 using namespace std;
+
 
 bool find2array(int target, vector<vector<int>> array) {
     int row = array.size(), col = array[0].size();
