@@ -9,6 +9,13 @@
 
 using namespace std;
 
+//AABCD
+//CDAA
+//AABCD
+//ABCD
+//AABCD
+//CFS
+
 string reverse_str(string s, int k) {
     reverse(s.begin(), s.begin() + (k % s.length()));
     reverse(s.begin() + (k % s.length()), s.end());
