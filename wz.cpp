@@ -10,27 +10,43 @@
 #include <unordered_map>
 
 using namespace std;
-typedef pair<int, int> pp;
 
 int main(int argc, char *argv[]) {
-    int n = 5;
-    int **p = (int **) malloc(sizeof(int *) * n);
-    for (int i = 0; i < n; ++i) {
-        int *q = (int *) malloc(sizeof(int) * n);
-        p[i] = q;
-        for (int j = 0; j < n; ++j) {
-            *(*(p + i) + j) = i + j + 1;
-        }
-    }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d ", p[i][j]);
-        }
-        printf("\n");
-    }
-    for (int i = 0; i < n; i++) {
-        free(p[i]);
-    }
-    free(p);
+//    vector<int> v = {0};
+//    int n;
+//    cin >> n;
+//    for (int i = 0; i < n; ++i) {
+//        int grade;
+//        cin >> grade;
+//        v.push_back(grade);
+//    }
+//    int q;
+//    cin >> q;
+//    vector<int> b;
+//    for (int j = 0; j < q; ++j) {
+//        int rate;
+//        cin >> rate;
+//        b.push_back(rate);
+//    }
+
+//    vector<vector<int>> v;
+//    int t;
+//    cin >> t;
+//    for (int i = 0; i < t; ++i) {
+//        int n;
+//        cin >> n;
+//        vector<int> arr;
+//        for (int j = 0; j < n; ++j) {
+//            int b;
+//            cin >> b;
+//            arr.push_back(b);
+//        }
+//        v.push_back(arr);
+//    }
+//    for (auto &c:v) {
+//        for (auto k:c)
+//            cout << k << " ";
+//        cout << endl;
+//    }
     return 0;
 }
