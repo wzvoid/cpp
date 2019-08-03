@@ -29,24 +29,19 @@ int main(int argc, char *argv[]) {
 //        b.push_back(rate);
 //    }
 
-//    vector<vector<int>> v;
-//    int t;
-//    cin >> t;
-//    for (int i = 0; i < t; ++i) {
-//        int n;
-//        cin >> n;
-//        vector<int> arr;
-//        for (int j = 0; j < n; ++j) {
-//            int b;
-//            cin >> b;
-//            arr.push_back(b);
-//        }
-//        v.push_back(arr);
-//    }
-//    for (auto &c:v) {
-//        for (auto k:c)
-//            cout << k << " ";
-//        cout << endl;
-//    }
+    vector<vector<int>> v;
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; ++i) {
+        int n;
+        cin >> n;
+        vector<int> arr;
+        for (int j = 0; j < n; ++j) {
+            int b;
+            cin >> b;
+            arr.push_back(b);
+        }
+        v.push_back(arr);
+    }
     return 0;
 }
