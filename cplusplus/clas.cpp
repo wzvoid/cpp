@@ -1,43 +1,42 @@
-//
-// Created by 王振 on 2019-08-04.
-//
-#include <iostream>
+#include<iostream>
 
 using namespace std;
 
-class Base {
+class A {
+private:
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
 public:
-    Base() : a(5) { cout << "Base 构造" << endl; }
+    A() : a(0), b(0) {}
 
-    explicit Base(int a) : a(a) { cout << "Base explicit 构造" << endl; }
+    A(int a, int b) : a(a), b(b) {}
 
-    ~Base() { cout << "Base 析构" << endl; };
-
-    virtual void show() { cout << "Base show" << endl; }
-
-    int a;
+    virtual void fun() { cout << "A::fun() called "; }
 };
 
-class Derived : public Base {
-public:
-    Derived() : Base(55), b(60) { cout << "Derived 构造" << endl; };
-
-    ~Derived() { cout << "Derived 析构" << endl; };
-
-    void show() override { cout << "Derived show" << endl; }
-
+class B : public A {
+private:
     int b;
+public:
+    B() : b(0) {}
+
+    explicit B(int b) : b(b) {}
+
+    void fun() override { cout << "B::fun() called "; }
 };
+
+//class C : public B {
+//public:
+//    void fun() override { cout << "C::fun() called "; }
+//};
 
 int main() {
-//    Derived d;
-//    Base e;
-//    cout << d.a << endl;
-//    d.show();
-    enum class WORKDAY {
-        MON, TUE = 9, WED, THU, FRI, SAT, SUN
-    };
-    Base b(50);
-    string s = "ssss";
+    A a;
+//    B *b = new C();
+    a.fun();
+    cout << sizeof(a);
+//    b->fun();
     return 0;
 }
