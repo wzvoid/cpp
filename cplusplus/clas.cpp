@@ -1,13 +1,12 @@
 #include<iostream>
+#include <cstddef>
 
 using namespace std;
 
 class A {
-private:
+public:
     int a = 0;
     int b = 0;
-    int c = 0;
-    int d = 0;
 public:
     A() : a(0), b(0) {}
 
@@ -17,7 +16,7 @@ public:
 };
 
 class B : public A {
-private:
+public:
     int b;
 public:
     B() : b(0) {}
@@ -34,9 +33,6 @@ public:
 
 int main() {
     A a;
-//    B *b = new C();
     a.fun();
-    cout << sizeof(a);
-//    b->fun();
     return 0;
 }
