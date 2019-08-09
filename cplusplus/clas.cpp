@@ -16,7 +16,7 @@ public:
 
     virtual void fun() { cout << "A::fun() called "; }
 
-    void show() {
+    virtual void show() {
         cout << "class A";
     }
 };
@@ -31,7 +31,7 @@ public:
 
     void fun() override { cout << "B::fun() called "; }
 
-    void show() {
+    void show() override {
         cout << "class B:" << b;
     };
 };
