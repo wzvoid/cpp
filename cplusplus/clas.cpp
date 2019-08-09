@@ -1,5 +1,7 @@
 #include<iostream>
 #include <cstddef>
+#include <array>
+#include <string>
 
 using namespace std;
 
@@ -35,8 +37,6 @@ public:
 };
 
 int main() {
-    A a;
-    B b;
-//    a.fun();
+    string s = "1.2344322";
     return 0;
 }
