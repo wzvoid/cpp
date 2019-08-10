@@ -37,6 +37,12 @@ public:
 };
 
 int main() {
-    string s = "1.2344322";
+    char *p1 = "abcdef";
+
+    char *p2 = "abcdef";
+
+    char a[] = "abcdef";
+//    cout << (unsigned long) a << endl << (unsigned long) p1 << endl << (unsigned long) p2;
+    printf("%0x,%0x,%0x", (unsigned long) a, (unsigned long) p1, (unsigned long) p2);
     return 0;
 }

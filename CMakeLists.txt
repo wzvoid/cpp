@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
 project(cpp)
 set(CMAKE_CXX_STANDARD 11)
-set(SOURCE_FILES cplusplus/clas.cpp WZ_STRING.cpp WZ_STRING.h)
+set(SOURCE_FILES WZ_STRING.cpp)
 add_executable(cpp ${SOURCE_FILES})
