@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-class wz_string final {
+class wz_string {
 public:
     friend std::istream &operator>>(std::istream &, wz_string &);
 

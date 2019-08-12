@@ -7,15 +7,8 @@
 
 #define TEMP 100
 
-wz_string::wz_string() : p_str(nullptr), p_length(0) { std::cout << "default constructor" << std::endl; }
-
-wz_string::wz_string(const char *str) : p_str(nullptr), p_length(0) { //可以用委托构造函数
-    if (str == nullptr)
-        return;
-    p_length = strlen(str);
-    p_str = new char[p_length + 1]; // 深拷贝
-    strcpy(p_str, str);
-    std::cout << "const char* constructor" << std::endl;
+wz_string::wz_string() : p_str(nullptr), p_length(0) {
+    std::cout << "default constructor" << std::endl;
 }
 
 wz_string::wz_string(const wz_string &str) : p_str(nullptr), p_length(0) {
@@ -27,9 +20,18 @@ wz_string::wz_string(const wz_string &str) : p_str(nullptr), p_length(0) {
     std::cout << "copy constructor" << std::endl;
 }
 
+wz_string::wz_string(const char *str) : p_str(nullptr), p_length(0) { //可以用委托构造函数
+    if (str == nullptr)
+        return;
+    p_length = strlen(str);
+    p_str = new char[p_length + 1]; // 深拷贝
+    strcpy(p_str, str);
+    std::cout << "const char* constructor" << std::endl;
+}
+
 wz_string::~wz_string() {
     delete[] p_str;
-//    this->p_str = nullptr; // 空悬指针没必要
+//    this->p_str = nullptr; // 空悬指针,这里没必要置空
 }
 
 size_t wz_string::length() {
