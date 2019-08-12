@@ -2,8 +2,8 @@
 
 int main() {
     wz_string p = "void ", w = "wz";
-//    w = p;
-//    std::cin >> w;
+    w = p;
+    std::cin >> w;
     std::cout << w.length() << std::endl;
     std::cout << w.empty() << std::endl;
     std::cout << w + p << std::endl;
