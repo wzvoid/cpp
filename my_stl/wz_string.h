@@ -29,6 +29,8 @@ public:
 
     wz_string &operator=(const wz_string &);
 
+    wz_string &operator+(const wz_string &);
+
 private:
     char *p_str;
     size_t p_length;

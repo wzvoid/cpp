@@ -55,6 +55,11 @@ wz_string &wz_string::operator=(const wz_string &str) {
     return *this;
 }
 
+wz_string &wz_string::operator+(const wz_string &str) {
+    
+    return *this;
+}
+
 std::istream &operator>>(std::istream &in, wz_string &str) {
     char c[TEMP];
     if (in >> c) {
