@@ -51,13 +51,32 @@ wz_string &wz_string::operator=(const wz_string &str) {
     this->p_length = strlen(str.p_str);
     this->p_str = new char[this->p_length + 1];
     strcpy(this->p_str, str.p_str);
-    std::cout << "copy assignment operator" << std::endl;
+    std::cout << "copy assignment operator=" << std::endl;
     return *this;
 }
 
-wz_string &wz_string::operator+(const wz_string &str) {
-    
-    return *this;
+//wz_string &wz_string::operator+(const wz_string &str) {
+//    char *temp = this->p_str;
+//    this->p_length += str.p_length;
+//    this->p_str = new char[this->p_length + str.p_length + 1];
+//    if (temp)
+//        strcat(this->p_str, temp);
+//    strcat(this->p_str, str.p_str); //参数不能为NULL
+//    delete[] temp;
+//    std::cout << "operator+ overload" << std::endl;
+//    return *this;
+//}
+
+wz_string operator+(const wz_string &lv, const wz_string &rv) {
+    wz_string ws;
+    ws.p_length = lv.p_length + rv.p_length;
+    ws.p_str = new char[ws.p_length + 1]();
+    if (lv.p_str)
+        strcat(ws.p_str, lv.p_str);
+    if (rv.p_str)
+        strcat(ws.p_str, rv.p_str);
+    std::cout << "operator+ overload" << std::endl;
+    return ws;
 }
 
 std::istream &operator>>(std::istream &in, wz_string &str) {

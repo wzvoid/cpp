@@ -13,6 +13,8 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, const wz_string &);
 
+    friend wz_string operator+(const wz_string &, const wz_string &);
+
     wz_string();
 
     wz_string(const wz_string &);
@@ -29,7 +31,7 @@ public:
 
     wz_string &operator=(const wz_string &);
 
-    wz_string &operator+(const wz_string &);
+//    wz_string &operator+(const wz_string &);
 
 private:
     char *p_str;
@@ -39,5 +41,7 @@ private:
 std::istream &operator>>(std::istream &, const wz_string &);
 
 std::ostream &operator<<(std::ostream &, const wz_string &);
+
+wz_string operator+(const wz_string &, const wz_string &);
 
 #endif //CPP_WZ_STRING_H
