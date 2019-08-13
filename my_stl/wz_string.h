@@ -13,7 +13,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, const wz_string &);
 
-    friend wz_string operator+(const wz_string &, const wz_string &);
+    friend wz_string operator+(const wz_string &, const wz_string &); // 操作符应符合习惯
 
     wz_string();
 
