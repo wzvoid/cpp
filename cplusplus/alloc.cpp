@@ -28,9 +28,7 @@ int test_allocator_1() {
     while (q != p) {
         alloc.destroy(--q); // 释放我们真正构造的string
     }
-
     alloc.deallocate(p, n);
-
     return 0;
 }
 
@@ -51,11 +49,9 @@ int test_allocator_2() {
     // 将剩余元素初始化为42
     std::uninitialized_fill_n(q, vi.size(), 42);
     cout << p[9];
-
     return 0;
 }
 
-////////////////////////////////////////////////////////////
 // reference: http://www.modernescpp.com/index.php/memory-management-with-std-allocator
 int test_allocator_3() {
     std::cout << std::endl;
@@ -101,7 +97,6 @@ int test_allocator_3() {
     return 0;
 }
 
-//////////////////////////////////////////////////////
 // reference: http://en.cppreference.com/w/cpp/memory/allocator
 int test_allocator_4() {
     std::allocator<int> a1;   // default allocator for ints
@@ -134,6 +129,6 @@ int test_allocator_4() {
 }
 
 int main() {
-    test_allocator_3();
+    test_allocator_4();
     return 0;
 }
