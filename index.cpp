@@ -9,12 +9,6 @@
 
 using namespace std;
 
-template<typename T>
-T compare(T x, T y) {
-    return x > y ? x : y;
-}
-
-
 int main() {
 //    string s1 = "wzvoid";
 //    const char *s2 = "wzvoid";
@@ -24,6 +18,5 @@ int main() {
 //    cout << sizeof(s2) << endl;
 //    cout << sizeof(s3) << endl;
 //    cout << sizeof(s4) << endl;
-    cout << compare(4, 6);
     return 0;
 }
