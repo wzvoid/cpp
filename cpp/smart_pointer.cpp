@@ -9,11 +9,14 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    shared_ptr<int> p1 = make_shared<int>(10);
-    shared_ptr<int> p3 = p1;
-    shared_ptr<int> p2 = make_shared<int>(20);
-    cout << *p1 << " " << *p2 << endl;
-    swap(p1, p2);
-    cout << *p1 << " " << *p2 << endl;
-    cout << p3.use_count();
+//    shared_ptr<int> p1 = make_shared<int>(10);
+//    shared_ptr<int> p3 = p1;
+//    shared_ptr<int> p2 = make_shared<int>(20);
+//    cout << *p1 << " " << *p2 << endl;
+//    swap(p1, p2);
+//    cout << *p1 << " " << *p2 << endl;
+//    cout << p3.use_count();
+    int a = 8;
+    auto b = a;
+    cout << typeid(b).name();
 }
