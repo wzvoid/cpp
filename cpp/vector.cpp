@@ -9,6 +9,12 @@
 
 using namespace std;
 
+namespace wz {
+    void show() {
+        cout << "wz";
+    }
+}
+
 int main() {
 //    std::vector<int> myvector{1, 2, 3, 4, 5, 6, 7, 8, 9};
 //    std::vector<int>::iterator it;
@@ -20,8 +26,8 @@ int main() {
 //        cout << c << ",";
 //    cout << endl << *(it2);
 
-    string s = "we are happy";
-    s.insert(2, "%20");
-    cout << s;
+    string *s = new string("wearehappy");
+    s->resize(3);
+    cout << *s;
     return 0;
 }
