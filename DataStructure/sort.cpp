@@ -12,6 +12,16 @@ using namespace std;
 
 class Solution {
 public:
+    //√∞≈›≈≈–Ú
+    void bubbleSort(vector<int> &arr) {
+        for (vector<int>::size_type i = 0; i < arr.size() - 1; ++i) {
+            for (vector<int>::size_type j = 0; j < arr.size() - 1 - i; ++j) {
+                if (arr[j] > arr[j + 1])
+                    swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+
     // ≤Â»Î≈≈–Ú
     // void insertSort(int *arr, int n)
     void insertSort(vector<int> &arr) {
@@ -190,7 +200,7 @@ public:
 int main() {
     Solution s;
     vector<int> v{5, 3, 8, 1, 7, 0};
-    s.heapSort(v);
+    s.bubbleSort(v);
     for (auto c:v)
         cout << c << " ";
     return 0;

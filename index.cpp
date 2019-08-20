@@ -5,18 +5,19 @@
 #include <array>
 #include <list>
 #include <map>
-#include <ext/hash_map>
+#include <set>
 
 using namespace std;
 
 int main() {
-//    string s1 = "wzvoid";
-//    const char *s2 = "wzvoid";
-//    string *s3 = new string("wzvoid");
-//    char *s4 = (char *) malloc(sizeof(char) * 6);
-//    cout << sizeof(s1) << endl;
-//    cout << sizeof(s2) << endl;
-//    cout << sizeof(s3) << endl;
-//    cout << sizeof(s4) << endl;
+    vector<int> v{5, 3, 8, 1, 7, 0, 0};
+    for (vector<int>::size_type i = 0; i < v.size() - 1; ++i) {
+        for (vector<int>::size_type j = 0; j < v.size() - 1 - i; ++j) {
+            if (v[j] > v[j + 1])
+                swap(v[j], v[j + 1]);
+        }
+    }
+    for (auto &c:v)
+        cout << c << " ";
     return 0;
 }
