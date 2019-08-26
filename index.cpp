@@ -89,5 +89,6 @@ int main() {
     moveZeroes(v);
     for (auto &c:v)
         cout << c << " ";
+    char *r = nullptr;
     return 0;
 }
