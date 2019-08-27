@@ -32,6 +32,5 @@ int main() {
     visited["jonny"] = false;
 
 
-
     return 0;
 }
