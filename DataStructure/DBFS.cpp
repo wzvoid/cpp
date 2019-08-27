@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <stack>
+#include <queue>
 
 #define MaxVertexNum 100
 
@@ -18,8 +19,10 @@ typedef struct {
 //邻接矩阵
 typedef struct {
     int vertexnums, edgenums;
-    
+
 } LGraph;
+
+bool visited[MaxVertexNum];
 
 void CreateGraph(MGraph &G) {
     G.vertexnums = 4;
@@ -37,8 +40,6 @@ void CreateGraph(MGraph &G) {
     G.Edge[3][1] = 1;
     G.Edge[3][2] = 1;
 }
-
-bool visited[MaxVertexNum];
 
 void DFS(MGraph &g, int v) {
     visited[v] = true;
@@ -61,9 +62,37 @@ void DFSTraverse(MGraph &g) {
     }
 }
 
+void BFS(MGraph &g, int v, queue<int> &q) {
+    q.push(v);
+    visited[v] = true; //入队时就设为true
+    while (!q.empty()) {
+        int t = q.front();
+        q.pop();
+        cout << g.Vertex[t] << ",";
+        for (int i = 0; i < g.vertexnums; ++i) {
+            if (g.Edge[v][i] == 1 && !visited[i]) {
+                q.push(i);
+                visited[i] = true;
+            }
+        }
+    }
+}
+
+void BFSTraverse(MGraph &g) {
+    for (int v = 0; v < g.vertexnums; ++v) {
+        visited[v] = false;
+    }
+    queue<int> q;
+    for (int v = 0; v < g.vertexnums; ++v) {
+        if (!visited[v]) {
+            BFS(g, v, q);
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     MGraph g;
     CreateGraph(g);
-    DFSTraverse(g);
+    BFSTraverse(g);
     return 0;
 }
