@@ -1,20 +1,13 @@
-//
-// Created by 王振 on 2019/8/26.
-//
-
-#include <iostream>
 #include <thread>
+#include <iostream>
 
-using namespace std;
-
-void myprint() {
-    cout << "我开始了" << endl;
-    ///
-    cout << "我结束了" << endl;
+void threadFunc() {
+    std::cout << "This is a thread!" << std::endl;
 }
 
 int main() {
-    thread myobj(myprint);
-    myobj.join();
-    cout << "I love China!" << endl;
+    std::thread t(threadFunc);
+    t.join();
+    std::cout << "This is main program!" << std::endl;
+    return 0;
 }
