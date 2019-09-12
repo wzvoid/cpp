@@ -1,74 +1,48 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <queue>
 
 using namespace std;
 
+bool isNum(string &str) {
+    for (int i = 0; i < str.size(); ++i) {
+        char tmp = (char) str[i];
+        if (tmp < '0' || tmp > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
-    int d;
-    cin >> d;
-    vector<vector<int>> v;
-    for (int i = 0; i < 4; i++) {
-        vector<int> t;
-        for (int j = 0; j < 4; j++) {
-            int val;
-            cin >> val;
-            t.push_back(val);
-        }
-        v.push_back(t);
+    vector<string> v;
+    string s;
+    while (cin >> s) {
+        v.push_back(s);
+        if (s == "=")
+            break;
     }
+    int sum = 0;
+    for (int i = 0; i < v.size(); ++i) {
+        if (i % 2 == 0 && !isNum(v[i])) {
+            cout << "ERROR line:" << i;
+            return 0;
+        }
+        if (i % 2 == 1 && (v[i] != "+" && v[i] != "-" && v[i] != "=")) {
+            cout << "ERROR line:" << i;
+            return 0;
+        }
+        if (i % 2 == 0) {
+            if (i == 0)
+                sum += stoi(v[i]);
+            else if (v[i - 1] == "+")
+                sum += stoi(v[i]);
+            else if (v[i - 1] == "-")
+                sum -= stoi(v[i]);
+        } else if (i % 2 == 1 && v[i] == "=")
+            cout << sum;
 
-    cout << endl;
-    for (auto &c:v) {
-        for (auto b:c)
-            cout << b << " ";
-        cout << endl;
     }
-    cout << endl;
-
-    if (d == 2) {
-        for (int i = 0; i <= 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if ((v[j][i] == v[j + 1][i]) || (v[j + 1][i] == 0)) {
-                    v[j + 1][i] += v[j][i];
-                    v[j][i] = 0;
-                }
-            }
-        }
-    } else if (d == 1) {
-        for (int i = 0; i <= 3; ++i) {
-            for (int j = 2; j >= 0; --j) {
-                if (v[j][i] == v[j + 1][i]) {
-                    v[j][i] += v[j + 1][i];
-                    v[j + 1][i] = 0;
-                }
-
-            }
-        }
-    } else if (d == 4) {
-        for (int i = 0; i <= 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if ((v[i][j] == v[i][j + 1]) || (v[i][j + 1] == 0)) {
-                    v[i][j + 1] += v[i][j];
-                    v[i][j] = 0;
-                }
-            }
-        }
-    } else if (d == 3) {
-        for (int i = 0; i <= 3; ++i) {
-            for (int j = 3; j > 0; --j) {
-                if ((v[i][j] == v[i][j - 1]) || (v[i][j - 1] == 0)) {
-                    v[i][j - 1] += v[i][j];
-                    v[i][j] = 0;
-                }
-            }
-        }
-    }
-
-    for (auto &c:v) {
-        for (auto b:c)
-            cout << b << " ";
-        cout << endl;
-    }
-
     return 0;
 }
