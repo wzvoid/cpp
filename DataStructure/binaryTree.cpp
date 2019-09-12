@@ -75,7 +75,6 @@ vector<int> PrintFromTopToBottom(TreeNode *root) {
             TreeNode *temp = que.front();
             que.pop();
             v.push_back(temp->val);
-//            cout << temp->val << " ";
             if (!flag) {
                 if (temp->left)
                     que.push(temp->left);

@@ -1,65 +1,32 @@
 //
-// Created by 王振 on 2019-07-31.
+// Created by wz on 2019/8/27.
 //
 
-#include<WINSOCK2.H>
-#include<STDIO.H>
-#include<iostream>
-#include<cstring>
-#include <WS2tcpip.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include<netinet/in.h>
+#include <iostream>
+#include <unistd.h>
 
 using namespace std;
-#pragma comment(lib, "ws2_32.lib")
-#pragma warning(disable:4996) //如果你有inet_addr函数的报错，加上这个就解决了
 
 int main() {
-    WORD sockVersion = MAKEWORD(2, 2);
-    WSADATA data;
-    if (WSAStartup(sockVersion, &data) != 0) {
-        return 0;
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(6180);
+    addr.sin_addr.s_addr = INADDR_ANY;
+    connect(sock, (sockaddr *) (&addr), sizeof(addr));
+    char buff[64];
+    int offset = 0;
+    int len;
+    while ((len = read(sock, buff, sizeof(buff))) > 0) {
+        if (len == 0) {
+            break;
+        }
+        offset += len;
+        buff[offset] = 0;
     }
-    while (true) {
-        SOCKET sclient = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-        if (sclient == INVALID_SOCKET) {
-            printf("invalid socket!");
-            return 0;
-        }
-
-        sockaddr_in serAddr;
-        serAddr.sin_family = AF_INET;
-        serAddr.sin_port = htons(8888);
-        //serAddr.sin_addr.S_un.S_addr = inet_pton(AF_INET, "127.0.0.1", &serAddr);
-        serAddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");//如果你有inet_addr函数的报错，看上文
-        if (connect(sclient, (sockaddr * ) & serAddr, sizeof(serAddr)) == SOCKET_ERROR) {  //连接失败
-            printf("connect error !");
-            closesocket(sclient);
-            return 0;
-        }
-
-        string data;
-        cin >> data;
-        const char *sendData;
-        sendData = data.c_str();   //string转const char*
-        //char * sendData = "你好，TCP服务端，我是客户端\n";
-        send(sclient, sendData, strlen(sendData), 0);
-        //send()用来将数据由指定的socket传给对方主机
-        //int send(int s, const void * msg, int len, unsigned int flags)
-        //s为已建立好连接的socket，msg指向数据内容，len则为数据长度，参数flags一般设0
-        //成功则返回实际传送出去的字符数，失败返回-1，错误原因存于error
-
-        char recData[255];
-        int ret = recv(sclient, recData, 255, 0);
-        if (ret > 0) {
-            recData[ret] = 0x00;
-            printf(recData);
-        }
-        closesocket(sclient);
-    }
-
-
-    WSACleanup();
+    cout << buff << endl;
     return 0;
-
 }
-
-
