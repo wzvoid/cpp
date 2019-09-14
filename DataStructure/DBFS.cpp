@@ -19,16 +19,36 @@ typedef struct {
 bool visited[MaxVertexNum];
 
 void CreateGraph(MGraph &G) {
-    G.vertexnums = 4;
-    G.edgenums = 4;
+    G.vertexnums = 7;
+    G.edgenums = 7;
     G.Vertex[0] = 'a';
     G.Vertex[1] = 'b';
     G.Vertex[2] = 'c';
     G.Vertex[3] = 'd';
-    G.Edge[1][3] = 1;
+    G.Vertex[4] = 'e';
+    G.Vertex[5] = 'f';
+    G.Vertex[6] = 'g';
+
+    G.Edge[0][1] = 1;
+    G.Edge[1][0] = 1;
+
+    G.Edge[0][4] = 1;
+    G.Edge[4][0] = 1;
+
+    G.Edge[0][2] = 1;
+    G.Edge[2][0] = 1;
+
+    G.Edge[1][2] = 1;
+    G.Edge[2][1] = 1;
+
     G.Edge[2][3] = 1;
-    G.Edge[3][1] = 1;
     G.Edge[3][2] = 1;
+
+    G.Edge[4][5] = 1;
+    G.Edge[5][4] = 1;
+
+    G.Edge[4][6] = 1;
+    G.Edge[6][4] = 1;
 }
 
 void DFS(MGraph &g, int v) {
@@ -45,14 +65,11 @@ void DFSTraverse(MGraph &g) {
     for (int v = 0; v < g.vertexnums; ++v) {
         visited[v] = false;
     }
-    int count = 0;
     for (int v = 0; v < g.vertexnums; ++v) {
         if (!visited[v]) {
-            ++count;
             DFS(g, v);
         }
     }
-    cout << endl << count;
 }
 
 void DFSTraverse2(MGraph &g, int i) {

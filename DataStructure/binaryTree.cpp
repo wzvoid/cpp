@@ -4,7 +4,7 @@
 #include<algorithm>
 #include<cassert>
 #include<stack>
-#include <queue>
+#include<deque>
 
 using namespace std;
 
@@ -65,41 +65,38 @@ void post(TreeNode *root) {
     }
 }
 
-vector<int> PrintFromTopToBottom(TreeNode *root) {
-    vector<int> v;
-    queue<TreeNode *> que;
-    bool flag = true;
-    if (root) {
-        que.push(root);
-        while (!que.empty()) {
-            TreeNode *temp = que.front();
-            que.pop();
-            v.push_back(temp->val);
-            if (!flag) {
-                if (temp->left)
-                    que.push(temp->left);
-                if (temp->right)
-                    que.push(temp->right);
-            } else {
-                if (temp->right)
-                    que.push(temp->right);
-                if (temp->left)
-                    que.push(temp->left);
-            }
-            flag = !flag;
-        }
-    }
-    return v;
-}
+//vector<int> PrintFromTopToBottom(TreeNode *root) {
+//    vector<int> v;
+//    deque<TreeNode *> que;
+//    bool flag = true;
+//    if (root) {
+//        que.push(root);
+//        while (!que.empty()) {
+//            TreeNode *temp = que.front();
+//            que.pop();
+//            v.push_back(temp->val);
+//            if (flag) {
+//                if (temp->left)
+//                    que.push_back(temp->left);
+//                if (temp->right)
+//                    que.push(temp->right);
+//            } else {
+//                if (temp->right)
+//                    que.push(temp->right);
+//                if (temp->left)
+//                    que.push(temp->left);
+//            }
+//            flag = !flag;
+//        }
+//    }
+//    return v;
+//}
 
 //   9
 // 3   7
 //4 5 8 6
 
 int main() {
-    TreeNode *r = createBiTree();
-    vector<int> a = PrintFromTopToBottom(r);
-    for (auto c:a)
-        cout << c << " ";
+
     return 0;
 }
