@@ -1,6 +1,3 @@
-//
-// Created by 王振 on 2019/8/26.
-//
 #include <iostream>
 #include <stack>
 #include <queue>
@@ -9,114 +6,158 @@
 
 using namespace std;
 
-//邻接矩阵
 typedef struct {
-    int vertexnums, edgenums;
-    char Vertex[MaxVertexNum];
-    int Edge[MaxVertexNum][MaxVertexNum];
+    char vertex[MaxVertexNum];
+    int edge[MaxVertexNum][MaxVertexNum];
+    int vertex_nums, edge_nums;
 } MGraph;
 
 bool visited[MaxVertexNum];
 
 void CreateGraph(MGraph &G) {
-    G.vertexnums = 7;
-    G.edgenums = 7;
-    G.Vertex[0] = 'a';
-    G.Vertex[1] = 'b';
-    G.Vertex[2] = 'c';
-    G.Vertex[3] = 'd';
-    G.Vertex[4] = 'e';
-    G.Vertex[5] = 'f';
-    G.Vertex[6] = 'g';
+    G.vertex_nums = 7;
+    G.edge_nums = 7;
+    G.vertex[0] = 'a';
+    G.vertex[1] = 'b';
+    G.vertex[2] = 'c';
+    G.vertex[3] = 'd';
+    G.vertex[4] = 'e';
+    G.vertex[5] = 'f';
+    G.vertex[6] = 'g';
 
-    G.Edge[0][1] = 1;
-    G.Edge[1][0] = 1;
+    G.edge[0][1] = 1;
+    G.edge[1][0] = 1;
 
-    G.Edge[0][4] = 1;
-    G.Edge[4][0] = 1;
+    G.edge[0][4] = 1;
+    G.edge[4][0] = 1;
 
-    G.Edge[0][2] = 1;
-    G.Edge[2][0] = 1;
+    G.edge[0][2] = 1;
+    G.edge[2][0] = 1;
 
-    G.Edge[1][2] = 1;
-    G.Edge[2][1] = 1;
+    G.edge[1][2] = 1;
+    G.edge[2][1] = 1;
 
-    G.Edge[2][3] = 1;
-    G.Edge[3][2] = 1;
+    G.edge[2][3] = 1;
+    G.edge[3][2] = 1;
 
-    G.Edge[4][5] = 1;
-    G.Edge[5][4] = 1;
+    G.edge[4][5] = 1;
+    G.edge[5][4] = 1;
 
-    G.Edge[4][6] = 1;
-    G.Edge[6][4] = 1;
+    G.edge[4][6] = 1;
+    G.edge[6][4] = 1;
 }
 
-void DFS(MGraph &g, int v) {
-    visited[v] = true;
-    cout << g.Vertex[v] << ",";
-    for (int i = 0; i < g.vertexnums; ++i) {
-        if (g.Edge[v][i] == 1 && !visited[i]) {
-            DFS(g, i);
+//***********************深度优先***********************
+// 时间：
+//      邻接矩阵：O(|v|**2)
+//      邻接表：O(|v|+|E|)
+// 空间： O(|v|)
+void DFS(MGraph &g, int i) {
+    visited[i] = true;
+    cout << g.vertex[i] << " ";
+    for (int j = 0; j < g.vertex_nums; ++j) {
+        if (g.edge[i][j] == 1 && !visited[j]) {
+            DFS(g, j);
         }
     }
 }
 
 void DFSTraverse(MGraph &g) {
-    for (int v = 0; v < g.vertexnums; ++v) {
-        visited[v] = false;
+    for (int i = 0; i < g.vertex_nums; ++i) {
+        visited[i] = false;
     }
-    for (int v = 0; v < g.vertexnums; ++v) {
-        if (!visited[v]) {
-            DFS(g, v);
+    for (int i = 0; i < g.vertex_nums; ++i) {
+        if (!visited[i]) {
+            DFS(g, i);
         }
     }
 }
 
-void DFSTraverse2(MGraph &g, int i) {
-    if (i < 0 || i >= g.vertexnums)
-        return;
-    cout << g.Vertex[i] << "\t";
-    visited[i] = true;
-    for (int v = 0; v < g.vertexnums; ++v) {
-        if (g.Edge[i][v] == 1 && !visited[v])
-            DFSTraverse2(g, v);
-    }
-}
 
-void BFS(MGraph &g, int v, queue<int> &q) {
-    q.push(v);
-    visited[v] = true; //入队时就设为true
+//***********************广度优先***********************
+// 时间：
+//      邻接矩阵：O(|v|**2)
+//      邻接表：O(|v|+|E|)
+// 空间： O(|v|)
+void BFS(MGraph &g, int i, queue<char> &q) {
+    q.push(i);
+    visited[i] = true; //入队时就·设为true
     while (!q.empty()) {
         int t = q.front();
         q.pop();
-        cout << g.Vertex[t] << ",";
-        for (int i = 0; i < g.vertexnums; ++i) {
-            if (g.Edge[v][i] == 1 && !visited[i]) {
-                q.push(i);
-                visited[i] = true;
+        cout << g.vertex[t] << ",";
+        for (int j = 0; j < g.vertex_nums; ++j) {
+            if (g.edge[i][j] == 1 && !visited[j]) {
+                q.push(j);
+                visited[j] = true;
             }
         }
     }
 }
 
 void BFSTraverse(MGraph &g) {
-    for (int v = 0; v < g.vertexnums; ++v) {
-        visited[v] = false;
+    for (int i = 0; i < g.vertex_nums; ++i) {
+        visited[i] = false;
     }
-    queue<int> q;
-    for (int v = 0; v < g.vertexnums; ++v) {
-        if (!visited[v]) {
-            BFS(g, v, q);
+    queue<char> q;
+    for (int i = 0; i < g.vertex_nums; ++i) {
+        if (!visited[i]) {
+            BFS(g, i, q);
         }
     }
+}
+
+void BFSTraverse2(MGraph &g) {
+    for (int i = 0; i < g.vertex_nums; ++i)
+        visited[i] = false;
+    queue<char> q;
+    for (int i = 0; i < g.vertex_nums; ++i) {
+        if (!visited[i]) {
+            q.push(g.vertex[i]);
+            visited[i] = true;
+            while (!q.empty()) {
+                cout << q.front() << ",";
+                q.pop();
+                for (int j = 0; j < g.vertex_nums; ++j) {
+                    if (g.edge[i][j] == 1 && !visited[j]) {
+                        q.push(g.vertex[j]);
+                        visited[j] = true;
+                    }
+                }
+            }
+        }
+    }
+}
+
+vector<int> BFS_MIN_Distance(MGraph &g, int n) {
+    for (int i = 0; i < g.vertex_nums; ++i)
+        visited[i] = false;
+    vector<int> d(g.vertex_nums, 666); //d[i]表示 n 到 i 的距离
+    queue<int> q;
+    d[n] = 0;
+    q.push(g.vertex[n]);
+    visited[n] = true;
+    while (!q.empty()) {
+        int temp = q.front();
+        q.pop();
+//        cout << temp << ",";
+        for (int i = 0; i < g.vertex_nums; ++i) {
+            if (g.edge[n][i] == 1 && !visited[i]) {
+                q.push(g.vertex[i]);
+                visited[i] = true;
+                d[i] = d[n] + 1;
+            }
+        }
+    }
+    return d;
 }
 
 int main(int argc, char *argv[]) {
     MGraph g;
     CreateGraph(g);
-//    for (int v = 0; v < g.vertexnums; ++v) {
-//        visited[v] = false;
-//    }
-    DFSTraverse(g);
+    BFSTraverse2(g);
+//    vector<int> d = BFS_MIN_Distance(g, 0);
+//    for (auto &c:d)
+//        cout << c << ",";
     return 0;
 }

@@ -1,9 +1,8 @@
 #include<iostream>
 #include<string>
-#include<string.h>
 #include<vector>
 #include<algorithm>
-#include<assert.h>
+#include<cassert>
 #include<stack>
 
 using namespace std;
@@ -17,7 +16,7 @@ typedef struct ListNode {
 
 ListNode *createlist() {
     ListNode *h = nullptr, *p = nullptr;
-    for (int i = 1; i <= 10; i = i + 2) {
+    for (int i = 1; i <= 9; i = i + 2) {
         auto *temp = new ListNode(i);
         if (p == nullptr) {
             h = p = temp;
@@ -31,7 +30,7 @@ ListNode *createlist() {
 
 ListNode *createlist2() {
     ListNode *h = nullptr, *p = nullptr;
-    for (int i = 0; i <= 10; i = i + 3) {
+    for (int i = 0; i <= 9; i = i + 3) {
         auto *temp = new ListNode(i);
         if (p == nullptr) {
             h = p = temp;
@@ -43,7 +42,7 @@ ListNode *createlist2() {
     return h;
 }
 
-void print(ListNode *p) {
+void printList(ListNode *p) {
     while (p) {
         cout << p->val << " ";
         p = p->next;
@@ -114,6 +113,38 @@ ListNode *FindKthToTail(ListNode *pListHead, unsigned int k) {
         return q;
 }
 
+ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    int carry = 0;
+    ListNode *l3 = nullptr, *p3 = l3;
+
+    while (l1 || l2) {
+        if (l1) {
+            carry += l1->val;
+            l1 = l1->next;
+        }
+        if (l2) {
+            carry += l2->val;
+            l2 = l2->next;
+        }
+        auto *temp = new ListNode(carry % 10);
+        carry /= 10;
+
+        if (l3 == nullptr) {
+            l3 = p3 = temp;
+        } else {
+            p3->next = temp;
+            p3 = p3->next;
+        }
+    }
+
+    if (carry == 1) {
+        auto *end = new ListNode(1);
+        p3->next = end;
+    }
+
+    return l3;
+}
+
 int main() {
     // 1 3 5 7 9
     // 0 3 6 9
@@ -126,6 +157,10 @@ int main() {
 //    print(a2);
 //    cout << endl;
 //    print(a3);
-    cout << FindKthToTail(a3, 6)->val;
+    printList(a1);
+    cout << endl;
+    printList(a2);
+    cout << endl;
+    printList(addTwoNumbers(a1, a2));
     return 0;
 }

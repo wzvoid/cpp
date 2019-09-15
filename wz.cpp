@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <queue>
 
-#define MaxVertexNum 100
+#define MaxVertexNum 50
 
 using namespace std;
 
@@ -50,7 +50,7 @@ void CreateGraph(MGraph &G) {
     G.Edge[6][4] = 1;
 }
 
-void BFS(MGraph &g) {
+void BFSTraverse(MGraph &g) {
     for (int i = 0; i < g.vertexnums; ++i)
         visited[i] = false;
     queue<char> q;
@@ -73,44 +73,26 @@ void BFS(MGraph &g) {
     }
 }
 
-//void DFSTraverse(MGraph &g, int i) {
-//    visited[i] = true;
-//    cout << g.Vertex[i] << ",";
-//    for (int j = 0; j < g.vertexnums; ++j) {
-//        if (g.Edge[i][j] == 1 && !visited[j])
-//            DFSTraverse(g, j);
-//    }
-//}
-//
-//void DFS(MGraph &g) {
-//    for (int i = 0; i < g.vertexnums; ++i)
-//        visited[i] = false;
-//    for (int i = 0; i < g.vertexnums; ++i) {
-//        if (!visited[i]) {
-//            DFSTraverse(g, i);
-//        }
-//    }
-//}
-
-void DFS(MGraph &g, int v) {
-    visited[v] = true;
-    cout << g.Vertex[v] << ",";
-    for (int i = 0; i < g.vertexnums; ++i) {
-        if (g.Edge[v][i] == 1 && !visited[i]) {
-            DFS(g, i);
-        }
+void DFS(MGraph &g, int i) {
+    visited[i] = true;
+    cout << g.Vertex[i] << ",";
+    for (int j = 0; j < g.vertexnums; ++j) {
+        if (g.Edge[i][j] == 1 && !visited[j])
+            DFS(g, j);
     }
 }
 
 void DFSTraverse(MGraph &g) {
-    for (int v = 0; v < g.vertexnums; ++v) {
-        visited[v] = false;
-    }
-    for (int v = 0; v < g.vertexnums; ++v) {
-        if (!visited[v]) {
-            DFS(g, v);
+    for (int i = 0; i < g.vertexnums; ++i)
+        visited[i] = false;
+    int count =0;
+    for (int i = 0; i < g.vertexnums; ++i) {
+        if (!visited[i]) {
+            DFS(g, i);
+            ++count;
         }
     }
+    cout << endl << "Connected Component: " << count;
 }
 
 int main() {
