@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <queue>
 
-#define MaxVertexNum 7
+#define MaxVertexNum 100
 
 using namespace std;
 
