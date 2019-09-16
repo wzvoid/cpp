@@ -85,7 +85,7 @@ void DFS(MGraph &g, int i) {
 void DFSTraverse(MGraph &g) {
     for (int i = 0; i < g.vertexnums; ++i)
         visited[i] = false;
-    int count =0;
+    int count = 0;
     for (int i = 0; i < g.vertexnums; ++i) {
         if (!visited[i]) {
             DFS(g, i);
