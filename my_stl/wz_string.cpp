@@ -4,8 +4,9 @@
 
 #include "wz_string.h"
 #include <cstring>
+#include <cassert>
 
-#define TEMP 100
+#define TEMP 1000
 
 wz_string::wz_string() : p_str(nullptr), p_length(0) {
     std::cout << "default constructor" << std::endl;
@@ -79,6 +80,7 @@ wz_string operator+(const wz_string &lv, const wz_string &rv) {
     return ws;
 }
 
+//这边的函数参数和返回值
 std::istream &operator>>(std::istream &in, wz_string &str) {
     char c[TEMP];
     if (in >> c) {
