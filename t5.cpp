@@ -1,42 +1,72 @@
-#include<iostream>
-#include <vector>
-#include <unordered_set>
+#include <iostream>
 #include <unordered_map>
+#include <list>
+#include <utility>
 
 using namespace std;
+using namespace stdext;
 
-int main() {
-    int n, m;
-    cin >> n;
-    vector<int> v;
-    for (int i = 0; i < n; ++i) {
-        int temp;
-        cin >> temp;
-        v.push_back(temp);
+class LRUCache {
+private:
+    int m_capacity;                                                        //cashe的大小
+    list<pair<int, int> > caches;                                          //用一个双链表存储cashe的内容
+    unordered_map<int, list<pair<int, int>>::iterator> cachesMap;         //使用map加快查找的速度
+public:
+    explicit LRUCache(int capacity) { m_capacity = capacity; }
+
+    int get(int key) {
+        int retValue = -1;
+        unordered_map<int, list<pair<int, int>>::iterator>::iterator it = cachesMap.find(key);
+        //如果在Cashe中，将记录移动到链表的最前端
+        if (it != cachesMap.end()) {
+            retValue = it->second->second;
+            //移动到最前端
+            list<pair<int, int>>::iterator ptrPair = it->second;
+            pair<int, int> tmpPair = *ptrPair;
+            caches.erase(ptrPair++);
+            caches.push_front(tmpPair);
+            //修改map中的值
+            cachesMap[key] = caches.begin();
+        }
+        return retValue;
     }
-    cin >> m;
-    vector<pair<int, int>> q;
-    for (int j = 0; j < m; ++j) {
-        int l, r;
-        cin >> l >> r;
-        q.emplace_back(make_pair(l, r));
-    }
-    for (int k = 0; k < m; ++k) {
-        int l = q[k].first, r = q[k].second;
-        unordered_map<int, int> s;
-        int res = 0;
-        for (int i = l - 1; i <= r - 1; ++i) {
-            if (s.find(v[i]) == s.end()) {
-                s[v[i]] = 1;
-            } else {
-                s[v[i]] += 1;
+
+    void set(int key, int value) {
+        unordered_map<int, list<pair<int, int>>::iterator>::iterator it = cachesMap.find(key);
+        if (it != cachesMap.end()) { //已经存在其中
+            list<pair<int, int>>::iterator ptrPait = it->second;
+            ptrPait->second = value;
+            //移动到最前面
+            pair<int, int> tmpPair = *ptrPait;
+            caches.erase(ptrPait);
+            caches.push_front(tmpPair);
+            //更新map
+            cachesMap[key] = caches.begin();
+        } else {//不存在其中
+            pair<int, int> tmpPair = make_pair(key, value);
+            if (m_capacity == caches.size()) //已经满
+            {
+                int delKey = caches.back().first;
+                caches.pop_back(); //删除最后一个
+                //删除在map中的相应项
+                unordered_map<int, list<pair<int, int>>::iterator>::iterator delIt = cachesMap.find(delKey);
+                cachesMap.erase(delIt++);
             }
+            caches.push_front(tmpPair);
+            cachesMap[key] = caches.begin(); //更新map
         }
-        for (auto it = s.begin(); it != s.end(); ++it) {
-            if (it->second == 1)
-                ++res;
-        }
-        cout << res << endl;
     }
+};
+
+int main(int argc, char **argv) {
+    LRUCache s(2);
+    s.set(2, 1);
+    s.set(1, 1);
+    cout << s.get(2) << endl;
+    s.set(4, 1);
+    s.set(5, 2);
+    cout << s.get(5) << endl;
+    cout << s.get(4) << endl;
+    getchar();
     return 0;
 }
