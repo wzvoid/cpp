@@ -1,0 +1,31 @@
+String::String(const String &another) : m_data(nullptr) {
+    if (another.m_data == nullptr)
+        return;
+    int p_length = strlen(another.m_data);
+    m_data = new char[p_length + 1];
+    strcpy(m_data, another.m_data);
+}
+
+String::String(const char *str = NULL) : m_data(nullptr){
+    if (str == nullptr)
+        return;
+    int p_length = strlen(str);
+    m_data = new char[p_length + 1];
+    strcpy(m_data, str);
+}
+
+String::~String() {
+    delete[] m_data;
+}
+
+String &String::operator=(const String &rhs) {
+    delete[] this->m_data;
+    int p_length = strlen(rhs.m_data);
+    this->m_data = new char[p_length + 1];
+    strcpy(this->m_data, rhs.m_data);
+    return *this;
+}
+
+int String::Compare(const String &another){
+    return strcmp(this->m_data, another.m_data);
+}
