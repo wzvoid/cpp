@@ -4,10 +4,12 @@
 
 
 #include <iostream>
-#include <unordered_map>
 #include <string>
-#include <map>
 #include <vector>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -35,7 +37,7 @@ int main() {
             {"Earth",   5000}};
 
     mymap.at("Mars") = 3396;
-
+    mymap["Mars"] = 4000;
     for (auto &x: mymap) {
         std::cout << x.first << ": " << x.second << std::endl;
     }
@@ -43,29 +45,24 @@ int main() {
         std::cout << "Element [" << x.first << ":" << x.second << "]";
         std::cout << " is in bucket #" << mymap.bucket(x.first) << std::endl;
     }
-    unsigned nbuckets = mymap.bucket_count();
-
-    std::cout << "mymap has " << nbuckets << " buckets:\n";
-
-    for (unsigned i = 0; i < nbuckets; ++i) {
-        std::cout << "bucket #" << i << " has " << mymap.bucket_size(i) << " elements.\n";
-    }
-    cout << mymap.max_load_factor();
-
+//    unsigned nbuckets = mymap.bucket_count();
+//    std::cout << "mymap has " << nbuckets << " buckets:\n";
+//    for (unsigned i = 0; i < nbuckets; ++i) {
+//        std::cout << "bucket #" << i << " has " << mymap.bucket_size(i) << " elements.\n";
+//    }
+//    cout << mymap.max_load_factor();
 
     unordered_map<char, int> count;
     unordered_map<char, int>::iterator it;
     string s = "we are family";
-
-    for (char c:s) {
+    for (char &c:s) {
         if (count.find(c) != count.end()) {
             ++count[c];
         } else {
             count[c] = 1;
         }
     }
-
-    for (auto tmp:count) {
+    for (auto &tmp:count) {
         cout << tmp.first << " " << tmp.second << endl;
     }
 

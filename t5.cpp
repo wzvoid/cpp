@@ -1,33 +1,42 @@
-#include <iostream>
+#include<iostream>
 #include <vector>
-#include <algorithm>
+#include <unordered_set>
+#include <unordered_map>
 
 using namespace std;
 
 int main() {
-    int n;
+    int n, m;
     cin >> n;
-    vector<int> a(n), b(n);
-    vector<long> s(n * n);
-    for (int i = 0; i < n; i++) {
-        int t;
-        cin >> t;
-        a[i] = t;
+    vector<int> v;
+    for (int i = 0; i < n; ++i) {
+        int temp;
+        cin >> temp;
+        v.push_back(temp);
     }
-    for (int i = 0; i < n; i++) {
-        int t;
-        cin >> t;
-        b[i] = t;
+    cin >> m;
+    vector<pair<int, int>> q;
+    for (int j = 0; j < m; ++j) {
+        int l, r;
+        cin >> l >> r;
+        q.emplace_back(make_pair(l, r));
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            s[i * n + j] = a[i] + b[j];
+    for (int k = 0; k < m; ++k) {
+        int l = q[k].first, r = q[k].second;
+        unordered_map<int, int> s;
+        int res = 0;
+        for (int i = l - 1; i <= r - 1; ++i) {
+            if (s.find(v[i]) == s.end()) {
+                s[v[i]] = 1;
+            } else {
+                s[v[i]] += 1;
+            }
         }
+        for (auto it = s.begin(); it != s.end(); ++it) {
+            if (it->second == 1)
+                ++res;
+        }
+        cout << res << endl;
     }
-    long result = s[0];
-    for (int i = 1; i < n * n; i++) {
-        result ^= s[i];
-    }
-    cout << result;
     return 0;
 }
