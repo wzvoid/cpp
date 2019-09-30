@@ -73,10 +73,8 @@ ListNode *Merge(ListNode *pHead1, ListNode *pHead2) {
             p3 = p3->next;
         }
     }
-    if (p1)
-        p3->next = p1;
-    if (p2)
-        p3->next = p2;
+    if (p1) p3->next = p1;
+    if (p2) p3->next = p2;
     return merge;
 }
 

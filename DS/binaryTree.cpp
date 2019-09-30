@@ -129,12 +129,12 @@ TreeNode *create(TreeNode *p, int k) {
 }
 
 int main() {
-//    TreeNode *r = createBiTree();
-//    vector<string> v;
-//    string s = to_string(r->val);
-//    path(r, v, s);
-//    for (auto &c:v)
-//        cout << c << endl;
+    TreeNode *r = createBiTree();
+    vector<string> v;
+    string s = to_string(r->val);
+    path(r, v, s);
+    for (auto &c:v)
+        cout << c << endl;
 
 //    int a[] = {8, 6, 4, 7, 13, 10, 16};
 //    TreeNode *p = nullptr;

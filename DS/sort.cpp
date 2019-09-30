@@ -48,10 +48,10 @@ public:
                     if (arr[j] < arr[k])
                         k = j;
                 if (k != i) { //这边不要盲目交换
-                    int temp = arr[k];
-                    arr[k] = arr[i];
-                    arr[i] = temp;
-//                    swap(arr[i], arr[k]);
+//                    int temp = arr[k];
+//                    arr[k] = arr[i];
+//                    arr[i] = temp;
+                    swap(arr[i], arr[k]);
                 }
             }
         }
