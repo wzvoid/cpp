@@ -10,8 +10,8 @@
 
 using namespace std;
 
-string remove_dumplicate(string s) {
-    if (s.length() < 2)
+string remove_dumplicate(string &s) {
+    if (s.length() <= 1)
         return s;
     string str;
     for (string::size_type i = 0; i < s.length(); ++i) {
@@ -27,7 +27,7 @@ string remove_dumplicate(string s) {
 }
 
 int main() {
-    string str = "fdreettyfff";
+    string str = "ffddreettyfff";
 //    sort(str.begin(), str.end());
 //    string::iterator s = unique(str.begin(), str.end());
 //    str.resize(s - str.begin() - 1);
