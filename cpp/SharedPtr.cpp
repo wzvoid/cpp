@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <unistd.h>
 
 using namespace std;
 
@@ -76,6 +77,11 @@ void replaceSpace(char *str, int length) {
 }
 
 int main() {
-    TestSharedPtr();
+//    TestSharedPtr();
+    if (0 == fork()) {
+        printf("create new process success!\n");
+        _exit(0);
+    }
+    printf("test fork ok\n");
     return 0;
 }
