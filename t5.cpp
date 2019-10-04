@@ -8,8 +8,8 @@ using namespace stdext;
 
 class LRUCache {
 private:
-    int m_capacity;                                                        //cashe的大小
-    list<pair<int, int> > caches;                                          //用一个双链表存储cashe的内容
+    int m_capacity;                                                       //cashe的大小
+    list<pair<int, int> > caches;                                         //用一个双链表存储cashe的内容
     unordered_map<int, list<pair<int, int>>::iterator> cachesMap;         //使用map加快查找的速度
 public:
     explicit LRUCache(int capacity) { m_capacity = capacity; }
@@ -67,6 +67,5 @@ int main(int argc, char **argv) {
     s.set(5, 2);
     cout << s.get(5) << endl;
     cout << s.get(4) << endl;
-    getchar();
     return 0;
 }

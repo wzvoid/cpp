@@ -114,6 +114,20 @@ void path(TreeNode *p, vector<string> &v, string s) {
     }
 }
 
+// 二叉排序树建立
+TreeNode *create(TreeNode *p, int k) {
+    if (!p) {
+        p = new TreeNode(k);
+    } else {
+        if (k < p->val) {
+            p->left = create(p->left, k);
+        } else {
+            p->right = create(p->right, k);
+        }
+    }
+    return p;
+}
+
 int main() {
     TreeNode *r = createBiTree();
     vector<string> v;
@@ -121,5 +135,12 @@ int main() {
     path(r, v, s);
     for (auto &c:v)
         cout << c << endl;
+
+//    int a[] = {8, 6, 4, 7, 13, 10, 16};
+//    TreeNode *p = nullptr;
+//    for (int i = 0; i < 7; ++i) {
+//        p = create(p, a[i]);
+//    }
+//    preOrder(p);
     return 0;
 }

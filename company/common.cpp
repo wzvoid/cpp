@@ -10,16 +10,16 @@
 
 using namespace std;
 
-string remove_dumplicate(string s) {
-    if (s.length() < 2)
+string remove_dumplicate(string &s) {
+    if (s.length() <= 1)
         return s;
     string str;
     for (string::size_type i = 0; i < s.length(); ++i) {
-        if (s[i] != ' ') {
-            str.push_back(s[i]);
+        if (s.at(i) != ' ') {
+            str.push_back(s.at(i));
             for (string::size_type j = i + 1; j < s.length(); ++j) {
                 if (s.at(i) == s.at(j))
-                    s[j] = ' ';
+                    s.at(j) = ' ';
             }
         }
     }
@@ -27,11 +27,11 @@ string remove_dumplicate(string s) {
 }
 
 int main() {
-    string str = "fdreettyhgh";
+    string str = "ffddreettyfff";
 //    sort(str.begin(), str.end());
-    string::iterator s = unique(str.begin(), str.end());
-    str.resize(s - str.begin() - 1);
-    cout << str << endl;
-    cout << remove_dumplicate("fdreettyhgh");
+//    string::iterator s = unique(str.begin(), str.end());
+//    str.resize(s - str.begin() - 1);
+//    cout << str << endl;
+    cout << remove_dumplicate(str);
     return 0;
 }

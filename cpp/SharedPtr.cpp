@@ -47,7 +47,7 @@ public:
         return _ptr;
     }
 
-protected:
+private:
     T *_ptr;
     int *_pCount;
 };
