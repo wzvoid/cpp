@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <unistd.h>
 
 using namespace std;
 
@@ -51,31 +52,22 @@ private:
     int *_pCount;
 };
 
-
 void TestSharedPtr() {
     SharedPtr<int> sp1(new int(10));
     SharedPtr<int> sp2(sp1);
     sp1 = sp2;
 }
 
-void replaceSpace(char *str, int length) {
-    if (!str)
-        return;
-    int count = 0;
-    for (int i = length; i >= 0; --i) {
-        if (str[i] == ' ') {
-            ++count;
-            for (int j = length + 2 * count; j >= i + 2; --j) {
-                str[j] = str[j - 2];
-            }
-            str[i] = '%';
-            str[i + 1] = '2';
-            str[i + 2] = '0';
-        }
-    }
-}
-
 int main() {
-    TestSharedPtr();
+//    TestSharedPtr();
+    pid_t pid = vfork();
+    if (pid == 0) {
+        printf("child process\n");
+        _exit(0);
+    } else if (pid > 0)
+        printf("father process!\n");
+    else
+        cerr << "error!" << endl;
+    printf("out\n");
     return 0;
 }
