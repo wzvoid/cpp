@@ -101,16 +101,55 @@ int maxProfit3(vector<int> &prices) {
         profit1 = max(profit1, prices[i] - minPrice);
         a.push_back(profit1);
     }
-    for (int j = prices.size() - 1; j >= 0; ++j) {
+    for (int j = prices.size() - 1; j >= 0; --j) {
         maxPrice = max(maxPrice, prices[j]);
-        profit2 = max(profit2, maxPrice - profit2);
+        profit2 = max(profit2, maxPrice - prices[j]);
         profit = max(profit, profit2 + a[j]);
     }
     return profit;
 }
 
+//最大子序列问题（dp）
+int maxSubsequence(vector<int> &v) {
+    if (v.empty())
+        return 0;
+    if (v.size() == 1)
+        return v[0];
+    vector<int> dp(v.size(), 0);
+    dp[0] = v[0];
+    for (int i = 1; i < v.size(); ++i) {
+        dp[i] = max(v[i], dp[i - 1] + v[i]); //dp[i]表示以v[i]结尾的子序列之和
+    }
+    int k = dp[0];
+    for (int j = 1; j < dp.size(); ++j) {
+        if (dp[j] > k)
+            k = dp[j];
+    }
+    return k;
+}
+
+//贪心算法，最大面值纸币问题 370元
+int maxMoney(int money) {
+    if (money <= 0)
+        return 0;
+    const int N = 7;
+    int m[N] = {5, 2, 2, 3, 1, 3, 5};
+    int v[N] = {1, 2, 5, 10, 20, 50, 100};
+    int nums = 0;
+    for (int i = N - 1; i >= 0; --i) {
+        int c = min(money / v[i], m[i]);
+//        int c = money / v[i]; // 如果不限定张数的话
+        nums += c;
+        money = money - v[i] * c;
+    }
+    if (money > 0)
+        return -1;
+    else
+        return nums;
+}
+
 int main() {
-    vector<int> v = {3, 3, 5, 0, 0, 3, 1, 4};
-    cout << maxProfit3(v);
+    vector<int> v = {-2, 11, -4, 13, -5, -2};
+    cout << maxMoney(520);
     return 0;
 }
