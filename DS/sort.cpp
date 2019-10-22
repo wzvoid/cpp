@@ -182,8 +182,8 @@ public:
         }
         while (i <= mid) temp[k++] = a[i++]; // 将左边剩余元素填充进temp中
         while (j <= last) temp[k++] = a[j++]; // 将右边剩余元素填充进temp中
-        for (i = 0; i < k; i++) //将temp中的元素全部拷贝到原数组中
-            a[first + i] = temp[i];
+        for (i = 0; i < k; i++)
+            a[first + i] = temp[i]; //将temp中的元素全部拷贝到原数组中
     }
 
     void mergesort(int *a, int first, int last, int *temp) //在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
