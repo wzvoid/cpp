@@ -86,7 +86,7 @@ ListNode *ReverseList(ListNode *pHead) {
         cur->next = pre;
         pre = cur;
         cur = next;
-        if (next)
+        if (next) // 这点一定要注意
             next = next->next;
     }
     return pre;
@@ -99,7 +99,7 @@ ListNode *FindKthToTail(ListNode *pListHead, unsigned int k) {
     int count = 0;
     ListNode *p = pListHead, *q = pListHead;
     while (p != nullptr) {
-        if (count < k)
+        if (count < k) // 这点一定要注意
             ++count;
         else
             q = q->next;
@@ -115,7 +115,7 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     int carry = 0;
     ListNode *l3 = nullptr, *p3 = l3;
 
-    while (l1 || l2) {
+    while (l1 || l2) { //这边注意
         if (l1) {
             carry += l1->val;
             l1 = l1->next;
@@ -135,7 +135,7 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
         }
     }
 
-    if (carry == 1) {
+    if (carry == 1) { //最后不要忘了
         auto *end = new ListNode(1);
         p3->next = end;
     }
