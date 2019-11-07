@@ -32,7 +32,7 @@ public:
 
     Bulk_quote(const string &book, double p, size_t qty, double disc) :
             Quote(book, p), min_qty(qty), discount(disc) {}; // 父类成员使用父类的构造函数。先初始化基类部分，再按照声明顺序依次初始化派生类的成员。
-    double net_price(size_t) const override;
+    double net_price(size_t) const override; // 这边要 override
 
     ~Bulk_quote() override = default;
 

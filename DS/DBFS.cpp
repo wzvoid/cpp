@@ -62,7 +62,7 @@ void DFS(MGraph &g, int i) {
     }
 }
 
-void DFSTraverse(MGraph &g) {
+void DFSTravel(MGraph &g) {
     for (int i = 0; i < g.vertex_nums; ++i) {
         visited[i] = false;
     }
@@ -95,7 +95,7 @@ void BFS(MGraph &g, int i, queue<char> &q) {
     }
 }
 
-void BFSTraverse(MGraph &g) {
+void BFSTravel(MGraph &g) {
     for (int i = 0; i < g.vertex_nums; ++i) {
         visited[i] = false;
     }
@@ -107,7 +107,7 @@ void BFSTraverse(MGraph &g) {
     }
 }
 
-void BFSTraverse2(MGraph &g) {
+void BFSTravel2(MGraph &g) {
     for (int i = 0; i < g.vertex_nums; ++i)
         visited[i] = false;
     queue<char> q;
@@ -129,33 +129,10 @@ void BFSTraverse2(MGraph &g) {
     }
 }
 
-vector<int> BFS_MIN_Distance(MGraph &g, int n) {
-    for (int i = 0; i < g.vertex_nums; ++i)
-        visited[i] = false;
-    vector<int> d(g.vertex_nums, 666); //d[i]表示 n 到 i 的距离
-    queue<int> q;
-    d[n] = 0;
-    q.push(g.vertex[n]);
-    visited[n] = true;
-    while (!q.empty()) {
-        int temp = q.front();
-        q.pop();
-//        cout << temp << ",";
-        for (int i = 0; i < g.vertex_nums; ++i) {
-            if (g.edge[n][i] == 1 && !visited[i]) {
-                q.push(g.vertex[i]);
-                visited[i] = true;
-                d[i] = d[n] + 1;
-            }
-        }
-    }
-    return d;
-}
-
 int main(int argc, char *argv[]) {
     MGraph g;
     CreateGraph(g);
-    BFSTraverse2(g);
+    BFSTravel(g);
 //    vector<int> d = BFS_MIN_Distance(g, 0);
 //    for (auto &c:d)
 //        cout << c << ",";
