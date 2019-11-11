@@ -116,9 +116,9 @@ void path(TreeNode *p, vector<string> &v, string s) {
 
 // 二叉排序树建立
 TreeNode *create(TreeNode *p, int k) {
-    if (!p) {
+    if (!p)
         p = new TreeNode(k);
-    } else {
+    else {
         if (k < p->val) {
             p->left = create(p->left, k);
         } else {

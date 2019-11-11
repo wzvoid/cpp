@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <queue>
+#include <set>
 
 #define MaxVertexNum 50
 
@@ -96,8 +97,44 @@ void DFSTraverse(MGraph &g) {
 }
 
 int main() {
-    MGraph g;
-    CreateGraph(g);
-    DFSTraverse(g);
+//    MGraph g;
+//    CreateGraph(g);
+//    DFSTraverse(g);
+
+//    int a[10] = {12, 78, 36, 54, 89, 15, 67, 73, 55, 22};
+//    vector<int> v(begin(a), end(a));
+//    make_heap(v.begin(), v.end());
+//    for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+//        cout << *it << ",";
+//    }
+//    cout << endl;
+//    v.push_back(373);
+//    push_heap(v.begin(), v.end());
+//    for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+//        cout << *it << ",";
+//    }
+//    cout << endl;
+//    pop_heap(v.begin(), v.end());
+//    for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+//        cout << *it << ",";
+//    }
+//    cout << endl;
+//    cout << v.back() << endl;
+//    v.pop_back();
+//    for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+//        cout << *it << ",";
+//    }
+//    cout << endl;
+//    sort_heap(v.begin(), v.end());
+//    for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+//        cout << *it << ",";
+//    }
+//    cout << endl;
+
+    set<int> s1{5, 2, 6, 8, 9, 7, 1, 33}, s2{5, 3, 8, 1, 7, 0};
+    set<int> s3;
+    set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), s3);
+//    for (auto &c:s3)
+//        cout << c << "," << endl;
     return 0;
 }
